@@ -1,0 +1,24 @@
+[project]
+name = "vre"
+version = "0.1.0"
+description = "Evaluation harness for retrieval over document corpora where later documents supersede earlier ones."
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Sven Djokic" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pgvector>=0.5.0",
+    "psycopg[binary]>=3.3.6",
+    "pydantic-settings>=2.15.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.18,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

@@ -30,7 +30,7 @@ The research publishes benchmarks. The open-source implementations largely do no
 
 This repository is an attempt at that comparison, plus the evaluation categories the existing benchmarks skip.
 
-**It is not a novel method.** Several teams, some well funded, work on adjacent versions of this problem. The contribution here is measurement and comparison, not discovery.
+It is not a novel method. Several teams, some well funded, work on adjacent versions of this problem. The contribution here is measurement and comparison, not discovery.
 
 ---
 
@@ -99,8 +99,36 @@ Postgres with pgvector, full-text search for the keyword half of hybrid retrieva
 
 ---
 
+## Evaluation corpus
+
+This harness evaluates against **VersionQA**: 100 question and answer pairs over 34 versioned technical documents (Bootstrap release notes, Apache Spark release notes, Node.js `assert` and `errors` documentation across many versions).
+
+Used with the kind permission of Daniel Huwiler, granted by email on 2026-09-23. The underlying documents are obtained from their own public sources under their respective licences.
+
+Using the published set rather than a home-made one means results here are directly comparable to the numbers in the VersionRAG paper, and gives a sanity check on the harness itself: a naive baseline that does not land near the published 58% is measuring the wrong thing.
+
+The three categories VersionQA does not cover — unanswerable questions, composite base-plus-amendment cases, and point-in-time retrieval — are added separately and marked as such.
+
+### Citation
+
+> Daniel Huwiler, Kurt Stockinger, Jonathan Fürst. *VersionRAG: Version-Aware Retrieval-Augmented Generation for Evolving Documents.* arXiv:2510.08109, October 2025.
+
+```bibtex
+@misc{huwiler2025versionrag,
+  title         = {VersionRAG: Version-Aware Retrieval-Augmented Generation for Evolving Documents},
+  author        = {Huwiler, Daniel and Stockinger, Kurt and F{\"u}rst, Jonathan},
+  year          = {2025},
+  eprint        = {2510.08109},
+  archivePrefix = {arXiv},
+  url           = {https://arxiv.org/abs/2510.08109},
+  note          = {Code and VersionQA benchmark: \url{https://github.com/danielhuwiler/versionrag}}
+}
+```
+
+---
+
 ## Licence
 
 MIT. See [LICENSE](LICENSE).
 
-Prior work referenced above belongs to its respective authors. Where their datasets are used, licence terms are respected and noted.
+Prior work referenced above belongs to its respective authors. Where their datasets are used, licence terms and permissions are respected and noted.
