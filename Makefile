@@ -13,7 +13,7 @@ DB      := versioned_retrieval
 # ("postmaster became multithreaded during startup").
 export LC_ALL := en_US.UTF-8
 
-.PHONY: help db-start db-stop db-status db-shell db-create migrate test
+.PHONY: help db-start db-stop db-status db-shell db-create migrate load test
 
 help:
 	@grep -E '^[a-z-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
@@ -36,6 +36,9 @@ db-create: ## Create the database and enable pgvector (first-time setup)
 
 migrate: ## Apply any pending database migrations
 	uv run python -m vre.migrate
+
+load: ## Load the corpus into the database (idempotent)
+	uv run python -m vre.load
 
 test: ## Run the test suite
 	uv run pytest -v
